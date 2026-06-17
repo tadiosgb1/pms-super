@@ -2,6 +2,12 @@
   <div class="min-h-screen bg-gray-50 p-4">
     <Loading :visible="loading" message="Loading groups..." />
 
+    <div class="mb-8">
+  <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Groups</h1>
+  <p class="text-gray-500 mt-1 max-w-lg">
+    Manage your team's permission levels and access control settings.
+  </p>
+</div>
     <!-- Toolbar -->
     <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
       <div class="relative w-full sm:max-w-sm">

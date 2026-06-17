@@ -2,6 +2,15 @@
   <div class="min-h-screen bg-gray-50 p-4">
     <Loading :visible="loading" message="Loading permissions..." />
 
+    <!-- Page Header -->
+    <div class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200">
+    
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">Permissions</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage System Permissions</p>
+      </div>
+    </div>
+
     <!-- Toolbar -->
     <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
       <div class="relative w-full sm:max-w-sm">

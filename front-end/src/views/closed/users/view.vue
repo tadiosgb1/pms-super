@@ -4,10 +4,12 @@
     <div class="min-h-screen bg-gray-100 p-4 sm:p-6">
       <div class="bg-white  rounded-lg overflow-hidden">
         <!-- Header -->
-        <div
-          class="bg-white text-black px-6 py-4 text-xl font-bold flex justify-between items-center"
-        >
-          Users Management
+        <div class="px-6 py-5 border-b border-gray-200 flex items-center gap-4">
+        
+          <div>
+            <h1 class="text-xl font-black text-gray-800 tracking-tight">Users Management</h1>
+            <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage All System Users</p>
+          </div>
         </div>
 
         <!-- Tabs -->

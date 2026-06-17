@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-screen bg-slate-50 font-sans">
-    <header class="relative bg-white w-full shadow-sm border-b border-slate-200 sticky top-0 z-20 px-4 py-2">
+    <header class="relative bg-white w-full shadow-sm border-b border-slate-100 sticky top-0 z-20 px-4 py-1.5">
       <div class="flex items-center justify-between w-full max-w-[1920px] mx-auto">
         
         <div class="flex items-center space-x-4">
@@ -141,36 +141,40 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-      <aside class="hidden lg:block w-64 bg-white border-r border-slate-200 h-full overflow-y-auto">
+      <!-- Desktop Sidebar -->
+      <aside class="hidden lg:flex flex-col w-52 shrink-0 bg-white border-r border-slate-100 h-full overflow-y-auto sidebar-scroll">
         <Sidebar />
       </aside>
 
+      <!-- Mobile Overlay -->
       <transition name="fade">
         <div
           v-if="showSidebar && screenWidth < 1024"
-          class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 transition-opacity"
+          class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40"
           @click="toggleSidebar"
         ></div>
       </transition>
 
+      <!-- Mobile Sidebar -->
       <transition name="slide">
         <aside
           v-if="showSidebar && screenWidth < 1024"
-          class="fixed left-0 top-0 w-72 bg-white shadow-2xl z-50 h-full overflow-hidden flex flex-col"
+          class="fixed left-0 top-0 w-60 bg-white shadow-2xl z-50 h-full overflow-hidden flex flex-col"
         >
-          <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-            <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Navigation</h2>
-            <button @click="toggleSidebar" class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-slate-400 shadow-sm border border-slate-200">
-              <i class="fas fa-times"></i>
+          <div class="px-4 py-3 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+            <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Navigation</h2>
+            <button @click="toggleSidebar" class="w-7 h-7 flex items-center justify-center rounded-lg bg-white text-slate-400 shadow-sm border border-slate-200 hover:text-red-500 transition-colors">
+              <i class="fas fa-times text-xs"></i>
             </button>
           </div>
-          <div class="flex-1 overflow-y-auto">
+          <div class="flex-1 overflow-y-auto sidebar-scroll">
             <Sidebar />
           </div>
         </aside>
       </transition>
 
-      <main class="flex-1 overflow-y-auto bg-slate-50/50">
+      <!-- Main Content -->
+      <main class="flex-1 overflow-y-auto main-scroll bg-slate-50/50">
         <div class="max-w-[1920px] mx-auto">
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -195,14 +199,52 @@
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
 }
 
 .slide-enter-active, .slide-leave-active {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .slide-enter-from, .slide-leave-to {
   transform: translateX(-100%);
+}
+
+/* Thin, elegant scrollbar — sidebar */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
+.sidebar-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 99px;
+}
+.sidebar-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
+
+/* Thin, elegant scrollbar — main content */
+.main-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
+.main-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.main-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.main-scroll::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 99px;
+}
+.main-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
 }
 </style>
 <script>
@@ -283,22 +325,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.3s ease;
-}
-.slide-enter-from,
-.slide-leave-to {
-  transform: translateX(-100%);
-}
-</style>

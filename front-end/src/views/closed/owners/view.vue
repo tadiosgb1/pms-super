@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="m-5">
     <Loading :visible="loading" message="Loading owners..." />
 
-    <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
-      <div class="relative w-full sm:max-w-sm">
-        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-        <input v-model="searchTerm" type="search" placeholder="Search by name, email or phone..."
-          class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30" />
+    <!-- Page Header (shown when accessed as a standalone route) -->
+    <div v-if="$route && $route.name === 'owners'" class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200">
+     
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">Owners</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage Property Owners</p>
       </div>
-      <button v-if="showAdd" @click="visible = true" class="flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary/90 transition whitespace-nowrap">
-        <i class="fas fa-plus-circle"></i> Add Owner
-      </button>
     </div>
+
+   
 
     <div class="overflow-x-auto rounded-lg border border-gray-100">
       <table class="w-full text-sm">
@@ -108,7 +108,7 @@ export default {
        .finally(() => { this.showConfirm = false; });
     },
     sortBy(key) { this.sortKey === key ? (this.sortAsc = !this.sortAsc) : ((this.sortKey = key), (this.sortAsc = true)); },
-    goToDetail(id) { this.$router.push(`/user_detail/${id}`); },
+    goToDetail(id) { this.$router.push({ name: 'owner-detail', params: { id } }); },
   },
 };
 </script>

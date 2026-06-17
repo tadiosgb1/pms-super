@@ -43,6 +43,7 @@ import subscriptionsPayment_view from '../views/closed/subscriptions/Subscriptio
 import view_groups from '../views/closed/groups/view.vue'
 import view_managers from '../views/closed/managers/view.vue'
 import view_owners from '../views/closed/owners/view.vue'
+import OwnerDetail from '../views/closed/owners/detail.vue'
 import Property_sales from '../views/closed/PropertySales/view.vue'
 import PropertySaleDetail from '../views/closed/PropertySales/saleDetail.vue'
 import Sales_Payments from '../views/closed/SalesPayment/view.vue'
@@ -62,6 +63,7 @@ import CropertiesListForSale from '../views/closed/propertiesListForSale/view.vu
 import Configurations from '../views/closed/Configurations/view.vue'
 import CoworkspacePayments from '../views/closed/workspacePayment/view.vue'
 import brokers from '../views/closed/brokers/view.vue'
+import BrokerDetail from '../views/closed/brokers/detail.vue'
 import brokerDetail from '../views/closed/brokers/brokerDetail.vue'
 import subDetail from '../views/closed/subscriptions/subDetail.vue'
 import workSpaceDetail from '../views/closed/coworkingSpace/detail.vue'
@@ -365,8 +367,10 @@ const routes = [
       { path: '/groups', name: 'groups', component: view_groups },
       { path: '/managers', name: 'managers', component: view_managers },
       { path: '/owners', name: 'owners', component: view_owners },
+      { path: '/owners/:id', name: 'owner-detail', component: OwnerDetail, props: true },
       { path: '/staffs', name: 'staffs', component: staffs },
        { path: '/brokers', name: 'brokers', component: brokers },
+       { path: '/brokers/:id', name: 'broker-detail', component: BrokerDetail, props: true },
        { path: '/brokerDetail/:id', name: 'brokerDetail', component: brokerDetail, props:true },
     ]
   },

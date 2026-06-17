@@ -2,6 +2,17 @@
   <div class="p-4 bg-gray-50 min-h-screen">
     <Loading :visible="loading" message="Loading properties..." />
 
+    <!-- Page Header -->
+    <div class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+        <i class="fas fa-building text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">All Properties</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage Real Estate Portfolio</p>
+      </div>
+    </div>
+
     <!-- Toolbar -->
     <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
       <div class="flex flex-wrap gap-3 items-center flex-1">

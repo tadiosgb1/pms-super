@@ -2,6 +2,17 @@
   <div>
     <Loading :visible="loading" message="Loading staff..." />
 
+    <!-- Page Header (shown when accessed as a standalone route) -->
+    <div v-if="$route && $route.name === 'staffs'" class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+        <i class="fas fa-users text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">Staffs</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage Owner Staff Members</p>
+      </div>
+    </div>
+
     <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
       <div class="relative w-full sm:max-w-sm">
         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>

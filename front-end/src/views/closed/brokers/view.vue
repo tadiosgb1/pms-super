@@ -1,6 +1,15 @@
 <template>
-  <div>
+  <div class="m-5">
     <Loading :visible="loading" message="Loading brokers..." />
+
+    <!-- Page Header (shown when accessed as a standalone route) -->
+    <div v-if="$route && $route.name === 'brokers'" class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200">
+    
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">Brokers</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage Real Estate Brokers</p>
+      </div>
+    </div>
 
     <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-4">
       <div class="relative w-full sm:max-w-sm">
@@ -57,7 +66,7 @@
             <td class="px-3 py-2 text-xs text-gray-500 italic max-w-[140px] truncate">{{ broker.wallet || '—' }}</td>
             <td class="px-3 py-2 text-right">
               <div class="flex justify-end gap-1">
-                <button @click="goToUserDetail(broker.user)" class="btn-action btn-blue"><i class="fas fa-eye"></i></button>
+                <button @click="goToDetail(broker.id)" class="btn-action btn-blue"><i class="fas fa-eye"></i></button>
                 <button @click="openUpdateModal(broker)" class="btn-action btn-green"><i class="fas fa-edit"></i></button>
                 <button @click="askDeleteConfirmation(broker)" class="btn-action btn-red"><i class="fas fa-trash-alt"></i></button>
               </div>
@@ -108,7 +117,7 @@ export default {
   },
   mounted() { this.fetchBrokers(); },
   methods: {
-    goToUserDetail(id) { this.$router.push(`/user_detail/${id}`); },
+    goToDetail(id) { this.$router.push({ name: 'broker-detail', params: { id } }); },
     openUpdateModal(broker) { this.selectedBroker = { ...broker }; this.showUpdateModal = true; },
     onSearchInput() { clearTimeout(this.searchTimeout); this.searchTimeout = setTimeout(() => this.fetchBrokers(), 300); },
     async fetchBrokers(customUrl = null) {

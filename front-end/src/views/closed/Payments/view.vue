@@ -1,5 +1,17 @@
 <template>
   <div class="min-h-screen bg-gray-100 p-4 sm:p-6">
+
+    <!-- Page Header -->
+    <div class="flex items-center gap-4 mb-6 pb-5 border-b border-gray-200 bg-white rounded-xl px-6 py-5 shadow-sm">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+        <i class="fas fa-receipt text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-black text-gray-800 tracking-tight">Payments</h1>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Financial Records & Transaction History</p>
+      </div>
+    </div>
+
     <!-- Tabs -->
     <div class="flex flex-wrap sm:flex-nowrap gap-2 mb-4 sm:mb-6">
       <button
