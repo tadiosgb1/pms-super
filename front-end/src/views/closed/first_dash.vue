@@ -1,12 +1,12 @@
-<template>
+﻿<template>
   <div class="p-6 bg-slate-50 min-h-screen">
     <!-- Header Section with Role-Based Title -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
       <div>
-        <h1 class="text-2xl font-black text-slate-800 tracking-tight">
+        <h1 class="text-base font-black text-slate-800 tracking-tight">
           {{ dashboardTitle }}
         </h1>
-        <p class="text-sm text-slate-500 font-medium uppercase tracking-widest text-[10px]">
+        <p class="text-xs text-slate-400 font-medium uppercase tracking-widest text-[10px]">
           {{ dashboardSubtitle }}
         </p>
       </div>
@@ -21,14 +21,14 @@
       <div
         v-for="(metric, index) in displayedMetrics"
         :key="index"
-        class="bg-white shadow-sm rounded-[1.5rem] p-6 flex flex-col justify-between border border-slate-200 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group"
+        class="bg-white shadow-sm rounded-xl p-4 flex flex-col justify-between border border-slate-200 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group"
       >
         <div class="flex justify-between items-start">
           <div>
             <h2 class="text-slate-400 text-[10px] font-black uppercase tracking-[0.15em] mb-1">
               {{ metric.label }}
             </h2>
-            <p class="text-3xl font-black text-slate-800 group-hover:text-primary transition-colors">
+            <p class="text-xl font-black text-slate-800 group-hover:text-primary transition-colors">
               {{ metric.value }}
             </p>
             <p v-if="metric.subtitle" class="text-xs text-slate-500 mt-1">{{ metric.subtitle }}</p>
@@ -76,8 +76,8 @@
           </div>
         </div>
         <div class="space-y-2 text-xs">
-          <div class="flex justify-between"><span class="text-blue-700">MRR:</span><span class="font-bold text-blue-900">${{ sampleData.mrr.toLocaleString() }}</span></div>
-          <div class="flex justify-between"><span class="text-blue-700">ARPU:</span><span class="font-bold text-blue-900">${{ sampleData.arpu }}</span></div>
+          <div class="flex justify-between"><span class="text-blue-700">MRR:</span><span class="font-bold text-blue-900">ETB {{ sampleData.mrr.toLocaleString() }}</span></div>
+          <div class="flex justify-between"><span class="text-blue-700">ARPU:</span><span class="font-bold text-blue-900">ETB {{ sampleData.arpu }}</span></div>
           <div class="flex justify-between"><span class="text-blue-700">Payment Success:</span><span class="font-bold text-blue-900">{{ sampleData.paymentSuccess }}%</span></div>
         </div>
       </div>
@@ -108,7 +108,7 @@
             <i class="fas fa-calendar-times text-lg"></i>
           </div>
           <div>
-            <h3 class="text-lg font-black text-orange-900 uppercase">Lease Expiry Alert</h3>
+            <h3 class="text-xs font-black text-orange-900 uppercase">Lease Expiry Alert</h3>
             <p class="text-sm text-orange-600">{{ sampleData.leaseExpiring30 }} leases expiring in next 30 days</p>
           </div>
         </div>
@@ -125,21 +125,21 @@
           <i class="fas fa-chart-pie text-lg"></i>
         </div>
         <div>
-          <h3 class="text-xl font-black text-slate-800 uppercase">Current Space Utilization</h3>
-          <p class="text-sm text-slate-500">Real-time desk and room occupancy</p>
+          <h3 class="text-sm font-black text-slate-800 uppercase">Current Space Utilization</h3>
+          <p class="text-xs text-slate-400">Real-time desk and room occupancy</p>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="text-center p-4 bg-purple-50 rounded-xl">
-          <p class="text-4xl font-black text-purple-600">{{ sampleData.hotDeskUtilization }}%</p>
+          <p class="text-2xl font-black text-purple-600">{{ sampleData.hotDeskUtilization }}%</p>
           <p class="text-xs font-bold text-slate-600 uppercase mt-2">Hot Desks</p>
         </div>
         <div class="text-center p-4 bg-blue-50 rounded-xl">
-          <p class="text-4xl font-black text-blue-600">{{ sampleData.dedicatedDeskUtilization }}%</p>
+          <p class="text-2xl font-black text-blue-600">{{ sampleData.dedicatedDeskUtilization }}%</p>
           <p class="text-xs font-bold text-slate-600 uppercase mt-2">Dedicated Desks</p>
         </div>
         <div class="text-center p-4 bg-green-50 rounded-xl">
-          <p class="text-4xl font-black text-green-600">{{ sampleData.meetingRoomUtilization }}%</p>
+          <p class="text-2xl font-black text-green-600">{{ sampleData.meetingRoomUtilization }}%</p>
           <p class="text-xs font-bold text-slate-600 uppercase mt-2">Meeting Rooms</p>
         </div>
       </div>
@@ -153,8 +153,8 @@
           <i class="fas fa-chart-bar text-lg"></i>
         </div>
         <div>
-          <h2 class="text-2xl font-black text-slate-800 tracking-tight uppercase">PMS Analytics Overview</h2>
-          <p class="text-sm text-slate-500">Property Rent, Sale & Coworking Performance</p>
+          <h2 class="text-base font-black text-slate-800 tracking-tight uppercase">PMS Analytics Overview</h2>
+          <p class="text-xs text-slate-400">Property Rent, Sale & Coworking Performance</p>
         </div>
       </div>
 
@@ -166,30 +166,30 @@
             <div class="w-10 h-10 rounded-xl bg-green-600 text-white flex items-center justify-center">
               <i class="fas fa-home"></i>
             </div>
-            <h3 class="text-lg font-black text-green-900 uppercase">Property Rent</h3>
+            <h3 class="text-xs font-black text-green-900 uppercase">Property Rent</h3>
           </div>
           <div class="space-y-3">
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-green-700 font-bold uppercase">Total Rented Units</p>
-              <p class="text-2xl font-black text-green-900">{{ pmsData.rent.totalRentedUnits }}</p>
+              <p class="text-base font-black text-green-900">{{ pmsData.rent.totalRentedUnits }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-green-700 font-bold uppercase">Monthly Rent Income</p>
-              <p class="text-2xl font-black text-green-900">${{ pmsData.rent.monthlyRentIncome.toLocaleString() }}</p>
+              <p class="text-base font-black text-green-900">ETB {{ pmsData.rent.monthlyRentIncome.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-red-700 font-bold uppercase">Overdue Rents</p>
-              <p class="text-2xl font-black text-red-900">{{ pmsData.rent.overdueCount }}</p>
-              <p class="text-sm text-red-700 font-bold">${{ pmsData.rent.overdueAmount.toLocaleString() }}</p>
+              <p class="text-base font-black text-red-900">{{ pmsData.rent.overdueCount }}</p>
+              <p class="text-sm text-red-700 font-bold">ETB {{ pmsData.rent.overdueAmount.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-green-700 font-bold uppercase">Paid This Month</p>
-              <p class="text-2xl font-black text-green-900">{{ pmsData.rent.paidThisMonth }}</p>
-              <p class="text-sm text-green-700 font-bold">${{ pmsData.rent.paidAmount.toLocaleString() }}</p>
+              <p class="text-base font-black text-green-900">{{ pmsData.rent.paidThisMonth }}</p>
+              <p class="text-sm text-green-700 font-bold">ETB {{ pmsData.rent.paidAmount.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-amber-700 font-bold uppercase">Pending Payments</p>
-              <p class="text-2xl font-black text-amber-900">{{ pmsData.rent.pendingCount }}</p>
+              <p class="text-base font-black text-amber-900">{{ pmsData.rent.pendingCount }}</p>
             </div>
           </div>
         </div>
@@ -200,28 +200,28 @@
             <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
               <i class="fas fa-tag"></i>
             </div>
-            <h3 class="text-lg font-black text-blue-900 uppercase">Property Sale</h3>
+            <h3 class="text-xs font-black text-blue-900 uppercase">Property Sale</h3>
           </div>
           <div class="space-y-3">
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-blue-700 font-bold uppercase">Properties for Sale</p>
-              <p class="text-2xl font-black text-blue-900">{{ pmsData.sale.totalForSale }}</p>
+              <p class="text-base font-black text-blue-900">{{ pmsData.sale.totalForSale }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-green-700 font-bold uppercase">Sold This Month</p>
-              <p class="text-2xl font-black text-green-900">{{ pmsData.sale.soldThisMonth }}</p>
+              <p class="text-base font-black text-green-900">{{ pmsData.sale.soldThisMonth }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-blue-700 font-bold uppercase">Total Sales Value</p>
-              <p class="text-2xl font-black text-blue-900">${{ pmsData.sale.totalSalesValue.toLocaleString() }}</p>
+              <p class="text-base font-black text-blue-900">ETB {{ pmsData.sale.totalSalesValue.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-purple-700 font-bold uppercase">Avg Sale Price</p>
-              <p class="text-2xl font-black text-purple-900">${{ pmsData.sale.avgSalePrice.toLocaleString() }}</p>
+              <p class="text-base font-black text-purple-900">ETB {{ pmsData.sale.avgSalePrice.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-amber-700 font-bold uppercase">Under Negotiation</p>
-              <p class="text-2xl font-black text-amber-900">{{ pmsData.sale.underNegotiation }}</p>
+              <p class="text-base font-black text-amber-900">{{ pmsData.sale.underNegotiation }}</p>
             </div>
           </div>
         </div>
@@ -232,28 +232,28 @@
             <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center">
               <i class="fas fa-briefcase"></i>
             </div>
-            <h3 class="text-lg font-black text-purple-900 uppercase">Coworking Space</h3>
+            <h3 class="text-xs font-black text-purple-900 uppercase">Coworking Space</h3>
           </div>
           <div class="space-y-3">
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-purple-700 font-bold uppercase">Total Spaces</p>
-              <p class="text-2xl font-black text-purple-900">{{ pmsData.coworking.totalSpaces }}</p>
+              <p class="text-base font-black text-purple-900">{{ pmsData.coworking.totalSpaces }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-purple-700 font-bold uppercase">Active Bookings</p>
-              <p class="text-2xl font-black text-purple-900">{{ pmsData.coworking.activeBookings }}</p>
+              <p class="text-base font-black text-purple-900">{{ pmsData.coworking.activeBookings }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-green-700 font-bold uppercase">Monthly Revenue</p>
-              <p class="text-2xl font-black text-green-900">${{ pmsData.coworking.monthlyRevenue.toLocaleString() }}</p>
+              <p class="text-base font-black text-green-900">ETB {{ pmsData.coworking.monthlyRevenue.toLocaleString() }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-purple-700 font-bold uppercase">Occupancy Rate</p>
-              <p class="text-2xl font-black text-purple-900">{{ pmsData.coworking.occupancyRate }}%</p>
+              <p class="text-base font-black text-purple-900">{{ pmsData.coworking.occupancyRate }}%</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3">
               <p class="text-xs text-amber-700 font-bold uppercase">Overdue Payments</p>
-              <p class="text-2xl font-black text-amber-900">{{ pmsData.coworking.overduePayments }}</p>
+              <p class="text-base font-black text-amber-900">{{ pmsData.coworking.overduePayments }}</p>
             </div>
           </div>
         </div>
@@ -267,24 +267,24 @@
             <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center">
               <i class="fas fa-map-marked-alt"></i>
             </div>
-            <h3 class="text-lg font-black text-indigo-900 uppercase">Zones & Units</h3>
+            <h3 class="text-xs font-black text-indigo-900 uppercase">Zones & Units</h3>
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-white/60 rounded-xl p-4 text-center">
               <p class="text-xs text-indigo-700 font-bold uppercase mb-2">Total Zones</p>
-              <p class="text-3xl font-black text-indigo-900">{{ stats.totalZones }}</p>
+              <p class="text-xl font-black text-indigo-900">{{ stats.totalZones }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-4 text-center">
               <p class="text-xs text-green-700 font-bold uppercase mb-2">Occupied Zones</p>
-              <p class="text-3xl font-black text-green-900">{{ pmsData.zones.occupied }}</p>
+              <p class="text-xl font-black text-green-900">{{ pmsData.zones.occupied }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-4 text-center">
               <p class="text-xs text-red-700 font-bold uppercase mb-2">Vacant Zones</p>
-              <p class="text-3xl font-black text-red-900">{{ pmsData.zones.vacant }}</p>
+              <p class="text-xl font-black text-red-900">{{ pmsData.zones.vacant }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-4 text-center">
               <p class="text-xs text-amber-700 font-bold uppercase mb-2">Under Maintenance</p>
-              <p class="text-3xl font-black text-amber-900">{{ pmsData.zones.maintenance }}</p>
+              <p class="text-xl font-black text-amber-900">{{ pmsData.zones.maintenance }}</p>
             </div>
           </div>
           <div class="mt-4 bg-white/60 rounded-xl p-4">
@@ -304,7 +304,7 @@
             <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center">
               <i class="fas fa-users-cog"></i>
             </div>
-            <h3 class="text-lg font-black text-rose-900 uppercase">Roles & Users</h3>
+            <h3 class="text-xs font-black text-rose-900 uppercase">Roles & Users</h3>
           </div>
           <div class="space-y-3">
             <div class="bg-white/60 rounded-xl p-3 flex justify-between items-center">
@@ -312,35 +312,35 @@
                 <p class="text-xs text-rose-700 font-bold uppercase">Owners</p>
                 <p class="text-sm text-rose-600">Property Owners</p>
               </div>
-              <p class="text-2xl font-black text-rose-900">{{ pmsData.roles.owners }}</p>
+              <p class="text-base font-black text-rose-900">{{ pmsData.roles.owners }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3 flex justify-between items-center">
               <div>
                 <p class="text-xs text-blue-700 font-bold uppercase">Managers</p>
                 <p class="text-sm text-blue-600">Property Managers</p>
               </div>
-              <p class="text-2xl font-black text-blue-900">{{ pmsData.roles.managers }}</p>
+              <p class="text-base font-black text-blue-900">{{ pmsData.roles.managers }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3 flex justify-between items-center">
               <div>
                 <p class="text-xs text-green-700 font-bold uppercase">Staff</p>
                 <p class="text-sm text-green-600">Support Staff</p>
               </div>
-              <p class="text-2xl font-black text-green-900">{{ pmsData.roles.staff }}</p>
+              <p class="text-base font-black text-green-900">{{ pmsData.roles.staff }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3 flex justify-between items-center">
               <div>
                 <p class="text-xs text-purple-700 font-bold uppercase">Tenants</p>
                 <p class="text-sm text-purple-600">Active Tenants</p>
               </div>
-              <p class="text-2xl font-black text-purple-900">{{ stats.totalTenants }}</p>
+              <p class="text-base font-black text-purple-900">{{ stats.totalTenants }}</p>
             </div>
             <div class="bg-white/60 rounded-xl p-3 flex justify-between items-center">
               <div>
                 <p class="text-xs text-amber-700 font-bold uppercase">Brokers</p>
                 <p class="text-sm text-amber-600">Real Estate Agents</p>
               </div>
-              <p class="text-2xl font-black text-amber-900">{{ pmsData.roles.brokers }}</p>
+              <p class="text-base font-black text-amber-900">{{ pmsData.roles.brokers }}</p>
             </div>
           </div>
         </div>
@@ -348,39 +348,39 @@
 
       <!-- Financial Summary Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-gradient-to-br from-emerald-500 to-green-600 rounded-[1.5rem] p-6 text-white">
+        <div class="bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl p-4 text-white">
           <div class="flex items-center gap-3 mb-3">
             <i class="fas fa-dollar-sign text-2xl"></i>
             <p class="text-xs font-black uppercase tracking-wider opacity-90">Total Revenue</p>
           </div>
-          <p class="text-3xl font-black mb-1">${{ pmsData.financial.totalRevenue.toLocaleString() }}</p>
+          <p class="text-xl font-black mb-1">ETB {{ pmsData.financial.totalRevenue.toLocaleString() }}</p>
           <p class="text-xs opacity-75">This Month</p>
         </div>
 
-        <div class="bg-gradient-to-br from-red-500 to-rose-600 rounded-[1.5rem] p-6 text-white">
+        <div class="bg-gradient-to-br from-red-500 to-rose-600 rounded-xl p-4 text-white">
           <div class="flex items-center gap-3 mb-3">
             <i class="fas fa-exclamation-triangle text-2xl"></i>
             <p class="text-xs font-black uppercase tracking-wider opacity-90">Total Overdue</p>
           </div>
-          <p class="text-3xl font-black mb-1">${{ pmsData.financial.totalOverdue.toLocaleString() }}</p>
+          <p class="text-xl font-black mb-1">ETB {{ pmsData.financial.totalOverdue.toLocaleString() }}</p>
           <p class="text-xs opacity-75">{{ pmsData.financial.overdueCount }} Accounts</p>
         </div>
 
-        <div class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-[1.5rem] p-6 text-white">
+        <div class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-4 text-white">
           <div class="flex items-center gap-3 mb-3">
             <i class="fas fa-chart-line text-2xl"></i>
             <p class="text-xs font-black uppercase tracking-wider opacity-90">Expected Income</p>
           </div>
-          <p class="text-3xl font-black mb-1">${{ pmsData.financial.expectedIncome.toLocaleString() }}</p>
+          <p class="text-xl font-black mb-1">ETB {{ pmsData.financial.expectedIncome.toLocaleString() }}</p>
           <p class="text-xs opacity-75">Next 30 Days</p>
         </div>
 
-        <div class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-[1.5rem] p-6 text-white">
+        <div class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-4 text-white">
           <div class="flex items-center gap-3 mb-3">
             <i class="fas fa-percentage text-2xl"></i>
             <p class="text-xs font-black uppercase tracking-wider opacity-90">Collection Rate</p>
           </div>
-          <p class="text-3xl font-black mb-1">{{ pmsData.financial.collectionRate }}%</p>
+          <p class="text-xl font-black mb-1">{{ pmsData.financial.collectionRate }}%</p>
           <p class="text-xs opacity-75">This Month</p>
         </div>
       </div>
@@ -394,8 +394,8 @@
             <i class="fas fa-exclamation-circle text-lg"></i>
           </div>
           <div>
-            <h2 class="text-2xl font-black text-slate-800 tracking-tight uppercase">Overdue Rents</h2>
-            <p class="text-sm text-slate-500">Requires immediate attention</p>
+            <h2 class="text-base font-black text-slate-800 tracking-tight uppercase">Overdue Rents</h2>
+            <p class="text-xs text-slate-400">Requires immediate attention</p>
           </div>
         </div>
         <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase transition shadow-lg">
@@ -428,7 +428,7 @@
               </td>
               <td class="py-4 px-4 text-sm text-slate-600">{{ overdue.property }}</td>
               <td class="py-4 px-4 text-sm text-slate-600">{{ overdue.unit }}</td>
-              <td class="py-4 px-4 font-black text-red-600">${{ overdue.amount.toLocaleString() }}</td>
+              <td class="py-4 px-4 font-black text-red-600">ETB {{ overdue.amount.toLocaleString() }}</td>
               <td class="py-4 px-4 text-sm text-slate-600">{{ overdue.dueDate }}</td>
               <td class="py-4 px-4">
                 <span :class="`px-3 py-1 rounded-full text-xs font-bold ${overdue.daysOverdue > 30 ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`">
@@ -456,7 +456,7 @@
               <i class="fas fa-crown"></i>
             </div>
             <div>
-              <h2 class="text-xl font-black text-slate-800 tracking-tight uppercase">Pricing Plan Analytics</h2>
+              <h2 class="text-sm font-black text-slate-800 tracking-tight uppercase">Pricing Plan Analytics</h2>
               <p class="text-xs font-bold text-slate-400">Revenue and Tier Performance</p>
             </div>
           </div>
@@ -499,7 +499,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div class="flex items-center gap-3">
           <div class="w-2 h-8 bg-primary rounded-full"></div>
-          <h2 class="text-xl font-black text-slate-800 tracking-tight uppercase">Income / Expense Overview</h2>
+          <h2 class="text-sm font-black text-slate-800 tracking-tight uppercase">Income / Expense Overview</h2>
         </div>
 
         <div class="flex flex-row items-center gap-4 bg-slate-50 p-3 rounded-2xl border border-slate-100">
@@ -585,7 +585,7 @@
         
         <div class="relative z-10 flex flex-col lg:flex-row items-center gap-12">
           <div class="lg:w-1/3">
-            <h2 class="text-2xl font-black tracking-tight mb-2">User Distribution</h2>
+            <h2 class="text-base font-black tracking-tight mb-2">User Distribution</h2>
             <p class="text-slate-400 text-sm font-medium mb-6">Analyze how your user base is split across different functional groups.</p>
             <div class="space-y-4">
               <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-primary">
@@ -613,7 +613,7 @@
 /**
  * Alpha PMS Dashboard - Comprehensive Property Management System
  * 
- * Based on: Alpha PMS – Dashboard & Analytics Specification
+ * Based on: Alpha PMS â€“ Dashboard & Analytics Specification
  * 
  * ============================================================================
  * PROPERTY MANAGEMENT SYSTEM (PMS) CORE FEATURES
@@ -827,8 +827,8 @@ export default {
         totalUsers: 1247,
         activeSubscriptions: 342,
         totalCoworkingSpaces: 28,
-        mrr: 45680,
-        arpu: 133,
+        MRR: 45680,
+        ARPU: 133,
         paymentSuccess: 97.8,
         openTickets: 23,
         avgResponseTime: '2.4h',
@@ -1037,7 +1037,7 @@ export default {
           { label: 'Total Users', value: this.sampleData.totalUsers, icon: 'fas fa-users', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
           { label: 'Active Subscriptions', value: this.sampleData.activeSubscriptions, icon: 'fas fa-crown', bgColor: 'bg-purple-50', iconColor: 'text-purple-500' },
           { label: 'Coworking Spaces', value: this.sampleData.totalCoworkingSpaces, icon: 'fas fa-briefcase', bgColor: 'bg-orange-50', iconColor: 'text-orange-500' },
-          { label: 'MRR', value: `$${this.sampleData.mrr.toLocaleString()}`, subtitle: 'Monthly Recurring Revenue', icon: 'fas fa-dollar-sign', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
+          { label: 'MRR', value: `ETB ${this.sampleData.mrr.toLocaleString()}`, subtitle: 'Monthly Recurring Revenue', icon: 'fas fa-dollar-sign', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
           { label: 'Avg Occupancy', value: `${this.sampleData.avgOccupancyRate}%`, subtitle: 'All Properties', icon: 'fas fa-chart-pie', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
           { label: 'New Signups', value: this.sampleData.newSignupsWeek, subtitle: 'This Week', icon: 'fas fa-user-plus', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-500' },
           { label: 'Churn Rate', value: `${this.sampleData.churnRate}%`, subtitle: 'This Month', icon: 'fas fa-user-minus', bgColor: 'bg-red-50', iconColor: 'text-red-500' },
@@ -1055,8 +1055,8 @@ export default {
           { label: 'Total Units', value: this.stats.totalZones, icon: 'fas fa-door-open', bgColor: 'bg-purple-50', iconColor: 'text-purple-500' },
           { label: 'Occupied Units', value: this.sampleData.occupiedUnits, icon: 'fas fa-home', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
           { label: 'Vacancy Rate', value: `${this.sampleData.vacancyRate}%`, icon: 'fas fa-door-closed', bgColor: 'bg-orange-50', iconColor: 'text-orange-500' },
-          { label: 'Monthly Rent Collected', value: `$${this.sampleData.monthlyRentCollected.toLocaleString()}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
-          { label: 'Outstanding Rent', value: `$${this.sampleData.outstandingRent.toLocaleString()}`, icon: 'fas fa-exclamation-circle', bgColor: 'bg-red-50', iconColor: 'text-red-500' },
+          { label: 'Monthly Rent Collected', value: `ETB ${this.sampleData.monthlyRentCollected.toLocaleString()}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
+          { label: 'Outstanding Rent', value: `ETB ${this.sampleData.outstandingRent.toLocaleString()}`, icon: 'fas fa-exclamation-circle', bgColor: 'bg-red-50', iconColor: 'text-red-500' },
           { label: 'Active Tenants', value: this.stats.totalTenants, icon: 'fas fa-users', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
           { label: 'Open Maintenance', value: this.sampleData.openMaintenanceRequests, icon: 'fas fa-tools', bgColor: 'bg-amber-50', iconColor: 'text-amber-500' },
         ];
@@ -1066,8 +1066,8 @@ export default {
           { label: 'Meeting Rooms', value: this.sampleData.totalMeetingRooms, icon: 'fas fa-door-open', bgColor: 'bg-blue-50', iconColor: 'text-blue-500' },
           { label: 'Active Members', value: this.sampleData.activeMembers, icon: 'fas fa-users', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
           { label: 'New Members', value: this.sampleData.newMembersMonth, subtitle: 'This Month', icon: 'fas fa-user-plus', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
-          { label: 'Membership Revenue', value: `$${this.sampleData.membershipRevenue.toLocaleString()}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
-          { label: 'Meeting Room Revenue', value: `$${this.sampleData.meetingRoomRevenue.toLocaleString()}`, icon: 'fas fa-chart-line', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-500' },
+          { label: 'Membership Revenue', value: `ETB ${this.sampleData.membershipRevenue.toLocaleString()}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
+          { label: 'Meeting Room Revenue', value: `ETB ${this.sampleData.meetingRoomRevenue.toLocaleString()}`, icon: 'fas fa-chart-line', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-500' },
           { label: 'Upcoming Events', value: this.sampleData.upcomingEvents, icon: 'fas fa-calendar-alt', bgColor: 'bg-orange-50', iconColor: 'text-orange-500' },
           { label: 'Avg Utilization', value: `${Math.round((this.sampleData.hotDeskUtilization + this.sampleData.dedicatedDeskUtilization + this.sampleData.meetingRoomUtilization) / 3)}%`, icon: 'fas fa-chart-pie', bgColor: 'bg-pink-50', iconColor: 'text-pink-500' },
         ];
@@ -1079,13 +1079,13 @@ export default {
           { label: 'Showings Today', value: this.sampleData.scheduledShowingsToday, icon: 'fas fa-calendar-day', bgColor: 'bg-blue-50', iconColor: 'text-blue-500' },
           { label: 'Applications Submitted', value: this.sampleData.applicationsSubmitted, icon: 'fas fa-file-alt', bgColor: 'bg-purple-50', iconColor: 'text-purple-500' },
           { label: 'Leases Signed', value: this.sampleData.leasesSigned, icon: 'fas fa-file-signature', bgColor: 'bg-emerald-50', iconColor: 'text-emerald-500' },
-          { label: 'Commission Earned', value: `$${this.sampleData.commissionEarned.toLocaleString()}`, subtitle: 'This Month', icon: 'fas fa-dollar-sign', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
+          { label: 'Commission Earned', value: `ETB ${this.sampleData.commissionEarned.toLocaleString()}`, subtitle: 'This Month', icon: 'fas fa-dollar-sign', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-500' },
           { label: 'Completed Showings', value: this.sampleData.completedShowings, icon: 'fas fa-check-circle', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
         ];
       } else if (this.userRole === 'tenant') {
         return [
-          { label: 'Current Rent Due', value: `$${this.sampleData.currentRentDue}`, subtitle: `Due: ${this.sampleData.rentDueDate}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-blue-50', iconColor: 'text-blue-500' },
-          { label: 'Deposit Balance', value: `$${this.sampleData.depositBalance}`, icon: 'fas fa-piggy-bank', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
+          { label: 'Current Rent Due', value: `ETB ${this.sampleData.currentRentDue}`, subtitle: `Due: ${this.sampleData.rentDueDate}`, icon: 'fas fa-dollar-sign', bgColor: 'bg-blue-50', iconColor: 'text-blue-500' },
+          { label: 'Deposit Balance', value: `ETB ${this.sampleData.depositBalance}`, icon: 'fas fa-piggy-bank', bgColor: 'bg-green-50', iconColor: 'text-green-500' },
           { label: 'Open Maintenance', value: this.sampleData.openMaintenanceReqs, icon: 'fas fa-tools', bgColor: 'bg-amber-50', iconColor: 'text-amber-500' },
           { label: 'Lease Ends', value: this.sampleData.leaseEndDate, icon: 'fas fa-calendar-times', bgColor: 'bg-purple-50', iconColor: 'text-purple-500' },
         ];
@@ -1275,7 +1275,7 @@ export default {
       }
     },
 
-    // 🟢 Fetch subscription report
+    // ðŸŸ¢ Fetch subscription report
 async fetchSubscriptionReport() {
   try {
     let url = "/get_subscription_report";
@@ -1343,7 +1343,7 @@ async fetchSubscriptionReport() {
       tooltip: {
         theme: "light",
         y: {
-          formatter: (val) => `$${val.toLocaleString()}`,
+          formatter: (val) => `ETB ${val.toLocaleString()}`,
         },
       },
     };
@@ -1371,7 +1371,7 @@ async fetchSubscriptionReport() {
 },
 
 
-    // 🟢 Fetch user type report (replaces fetchAndGroupUsers)
+    // ðŸŸ¢ Fetch user type report (replaces fetchAndGroupUsers)
     async fetchUserTypeReport() {
       try {
         const params = {
@@ -1475,3 +1475,6 @@ async fetchSubscriptionReport() {
   transition: all 0.2s ease;
 }
 </style>
+
+
+

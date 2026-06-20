@@ -1,57 +1,60 @@
 <template>
   <div>
     <transition name="slide">
-      <aside
-        class="w-52 flex flex-col fixed md:relative z-15 h-full bg-white border-r border-slate-100"
-      >
-        <!-- Header -->
-        <div
-          v-if="showTitle"
-          class="flex items-center space-x-3 px-3 py-3 font-black text-sm text-white bg-primary sticky top-0 z-10 shadow-sm"
-        >
-          <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shrink-0">
-            <img src="../../assets/img/logo1.jpg" class="h-6 w-6 rounded-md" />
+      <aside class="w-52 flex flex-col fixed md:relative z-15 h-full bg-white border-r border-slate-100">
+
+        <!-- Mobile header (only shows when sidebar is overlaid) -->
+        <div v-if="showTitle"
+          class="flex items-center gap-3 px-4 py-3.5 bg-white border-b border-slate-100 sticky top-0 z-10">
+          <div class="w-8 h-8 rounded-lg overflow-hidden shrink-0 shadow-sm">
+            <img src="../../assets/img/logo1.jpg" class="h-full w-full object-cover" />
           </div>
-          <p class="text-sm tracking-tight">Alpha PMS</p>
+          <div>
+            <p class="text-sm font-black text-slate-800 leading-none">Alpha PMS</p>
+            <p class="text-[9px] text-slate-400 font-semibold uppercase tracking-widest mt-0.5">Super Admin</p>
+          </div>
         </div>
 
         <!-- Menu -->
-        <div class="flex-1 overflow-y-auto pt-3 sidebar-inner">
+        <div class="flex-1 overflow-y-auto py-3 sidebar-inner">
           <ul class="px-2 space-y-0.5">
             <li v-for="(item, index) in filteredMenuItems" :key="item.name">
 
-              <!-- Parent Menu -->
+              <!-- Parent/Group Menu -->
               <div v-if="item.children">
                 <button
                   @click="toggleMenu(index)"
-                  class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold text-primary hover:bg-slate-50 transition-colors"
+                  class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all group"
+                  :class="openMenuIndex === index
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-slate-800 hover:bg-slate-100 hover:text-slate-900'"
                 >
-                  <div class="flex items-center gap-2">
-                    <i :class="[item.icon, 'text-xs w-4 text-center']"></i>
-                    <span>{{ item.name }}</span>
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-5 h-5 flex items-center justify-center rounded shrink-0"
+                      :class="openMenuIndex === index ? 'text-primary' : 'text-slate-500 group-hover:text-slate-700'">
+                      <i :class="[item.icon, 'text-xs']"></i>
+                    </div>
+                    <span class="text-xs font-bold tracking-tight">{{ item.name }}</span>
                   </div>
-                  <i
-                    :class="openMenuIndex === index ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
-                    class="text-[9px] text-slate-400"
-                  ></i>
+                  <i class="fas text-[10px] transition-transform duration-200 text-slate-400"
+                    :class="openMenuIndex === index ? 'fa-chevron-down' : 'fa-chevron-right'">
+                  </i>
                 </button>
 
                 <!-- Submenu -->
                 <transition name="fade">
-                  <ul
-                    v-if="openMenuIndex === index"
-                    class="ml-5 mt-0.5 mb-1 space-y-0.5 border-l border-slate-100 pl-2"
-                  >
+                  <ul v-if="openMenuIndex === index" class="mt-0.5 mb-1 ml-3 pl-3 space-y-0.5 border-l-2 border-slate-200">
                     <li v-for="child in item.children" :key="child.route">
                       <router-link
                         :to="{ name: child.route }"
-                        class="block px-2.5 py-1.5 rounded-md text-[11px] font-semibold transition-colors"
-                        :class="
-                          $route.name === child.route
-                            ? 'bg-primary text-white'
-                            : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
-                        "
+                        class="flex items-center gap-2 px-2.5 py-2 rounded-md text-xs font-semibold transition-all"
+                        :class="$route.name === child.route
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'text-slate-700 hover:bg-primary/10 hover:text-primary'"
                       >
+                        <span class="w-1.5 h-1.5 rounded-full shrink-0 transition-colors"
+                          :class="$route.name === child.route ? 'bg-white' : 'bg-slate-300'">
+                        </span>
                         {{ child.name }}
                       </router-link>
                     </li>
@@ -59,26 +62,30 @@
                 </transition>
               </div>
 
-              <!-- Single Menu -->
+              <!-- Single Item -->
               <router-link
                 v-else
                 :to="{ name: item.route }"
-                class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-colors"
-                :class="
-                  $route.name === item.route
-                    ? 'bg-primary text-white'
-                    : 'text-primary hover:bg-slate-50'
-                "
+                class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-xs font-bold transition-all group"
+                :class="$route.name === item.route
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-slate-800 hover:bg-slate-100 hover:text-slate-900'"
               >
-                <i :class="[item.icon, 'text-xs w-4 text-center']"></i>
+                <div class="w-5 h-5 flex items-center justify-center shrink-0">
+                  <i :class="[item.icon, 'text-xs',
+                    $route.name === item.route ? 'text-white' : 'text-slate-500 group-hover:text-slate-700']">
+                  </i>
+                </div>
                 {{ item.name }}
               </router-link>
 
             </li>
           </ul>
 
-          <div class="h-8"></div>
+          <!-- Section divider label helper (visual spacing) -->
+          <div class="h-6"></div>
         </div>
+
       </aside>
     </transition>
   </div>

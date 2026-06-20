@@ -639,7 +639,7 @@ export default {
     async loadZones(ownerId) {
       this.busy.zones = true;
       try {
-        const res = await this.$apiGet("/get_property_zones", { owner_id: ownerId, page_size: 1000 });
+        const res = await this.$apiGet("/get_property_zones", { as_owner: ownerId, page_size: 1000 });
         this.zones = res.data || [];
       } catch (e) { this.zones = []; } finally { this.busy.zones = false; }
     },
@@ -647,7 +647,7 @@ export default {
     async loadProperties(ownerId) {
       this.busy.properties = true;
       try {
-        const res = await this.$apiGet("/get_properties", { owner_id: ownerId, page_size: 1000 });
+        const res = await this.$apiGet("/get_properties", { as_owner: ownerId, page_size: 1000 });
         const list = res.data || [];
         // enrich zone names
         await Promise.all(list.map(async p => {
@@ -666,7 +666,7 @@ export default {
       this.busy.rents = true;
       try {
         const res = await this.$apiGet("/get_rents", {
-          "property_id__property_zone_id__owner_id__id": ownerId,
+          as_owner: ownerId,
           page_size: 1000,
         });
         this.rents = res.data || [];
@@ -676,12 +676,10 @@ export default {
     async loadRentPayments(ownerId) {
       this.busy.rentPayments = true;
       try {
-        const user = await this.$apiGetById("/get_user", ownerId);
-        const email = user?.email;
-        const params = email
-          ? { "rent_id__property_id__property_zone_id__owner_id__email": email, page_size: 1000 }
-          : { page_size: 200 };
-        const res = await this.$apiGet("/get_payments", params);
+        const res = await this.$apiGet("/get_payments", {
+          as_owner: ownerId,
+          page_size: 1000,
+        });
         this.rentPayments = res.data || [];
       } catch (e) { this.rentPayments = []; } finally { this.busy.rentPayments = false; }
     },
@@ -690,7 +688,7 @@ export default {
       this.busy.sales = true;
       try {
         const res = await this.$apiGet("/get_property_zone_sales", {
-          "property_id__owner_id__id": ownerId,
+          as_owner: ownerId,
           page_size: 1000,
         });
         this.sales = res.data || [];
@@ -701,7 +699,7 @@ export default {
       this.busy.subscriptions = true;
       try {
         const res = await this.$apiGet("/get_subscription", {
-          "user_id__id": ownerId,
+          as_owner: ownerId,
           page_size: 1000,
         });
         this.subscriptions = res.data || [];
@@ -714,7 +712,7 @@ export default {
       this.busy.subPayments = true;
       try {
         const res = await this.$apiGet("/get_subscription_payment", {
-          user_id: ownerId,
+          as_owner: ownerId,
           page_size: 1000,
         });
         const list = res.data || [];
@@ -734,12 +732,10 @@ export default {
     async loadMaintenance(ownerId) {
       this.busy.maintenance = true;
       try {
-        const user = await this.$apiGetById("/get_user", ownerId);
-        const email = user?.email;
-        const params = email
-          ? { "property_id__property_zone_id__owner_id__email": email, page_size: 1000 }
-          : { page_size: 200 };
-        const res = await this.$apiGet("get_maintenance_requests", params);
+        const res = await this.$apiGet("get_maintenance_requests", {
+          as_owner: ownerId,
+          page_size: 1000,
+        });
         this.maintenance = res.data || [];
       } catch (e) { this.maintenance = []; } finally { this.busy.maintenance = false; }
     },
